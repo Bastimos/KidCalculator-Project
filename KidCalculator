@@ -1,1 +1,622 @@
+/** School project writen over 2 days
+  *
+  *
+  *
+  */
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.Panel;
+
+import javax.swing.JTextPane;
+
+import java.awt.TextField;
+
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.ButtonGroup;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class KidCalculator extends JPanel implements ActionListener {
+
+	
+	public static KidCalculator kc = new KidCalculator();
+	private JTextField displayArea;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	
+	boolean addition;
+	boolean substraction;
+	boolean division;
+	boolean multiplication;
+	boolean equals;
+	boolean isResult;
+	
+	JPopupMenu menu;
+	int background = 0;
+	ImageIcon i;
+	static ImageIcon frameIcon = new ImageIcon("colorful.jpg");
+	/**
+	 * Launch the application.
+	 */
+
+	//***********************************************************************************************************************
+
+		private static void createAndShowGUI() {
+
+			JFrame frame = new JFrame();
+
+			frame.setSize(480, 380);
+			frame.add(kc);
+			frame.setTitle("Junior Calc");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   		frame.setVisible(true);
+			frame.setResizable(false);
+
+			frame.setIconImage(frameIcon.getImage());
+		}
+
+	//*********************************************************************************************************************
+	//*********************************************************************************************************************
+
+		public static void main ( String args[] ) {
+
+			        javax.swing.SwingUtilities.invokeLater(new Runnable() {            
+					public void run() { 
+	              				 createAndShowGUI();           
+					}       
+				}); 
+
+		
+		} //main
+
+	//*********************************************************************************************************************
+
+	/**
+	 * Create the frame.
+	 */
+		public KidCalculator() {
+			
+			setLayout(null);
+			
+			displayArea = new JTextField();
+			displayArea.setBackground(new Color(204, 255, 204));
+			displayArea.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			displayArea.setEditable(false);
+			displayArea.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			displayArea.setBounds(15, 15, 393, 50);
+			add(displayArea);
+			displayArea.setColumns(10);
+			
+			
+			JButton btnNewButton1 = new JButton("7");
+			btnNewButton1.setToolTipText("SEVEN");
+			btnNewButton1.setBackground(new Color(255, 255, 204));
+			btnNewButton1.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			btnNewButton1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "7");
+					}
+				}
+			});
+			btnNewButton1.setBounds(15, 75, 70, 55);
+			add(btnNewButton1);
+			
+			JButton button2 = new JButton("8");
+			button2.setToolTipText("EIGHT");
+			button2.setBackground(new Color(255, 255, 204));
+			button2.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "8");
+					}
+				}
+			});
+			button2.setBounds(95, 75, 70, 55);
+			add(button2);
+			
+			JButton button3 = new JButton("9");
+			button3.setToolTipText("NINE");
+			button3.setBackground(new Color(255, 255, 204));
+			button3.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "9");
+					}
+				}
+			});
+			button3.setBounds(175, 75, 70, 55);
+			add(button3);
+			
+			JButton btnAdd = new JButton("+");
+			btnAdd.setBackground(new Color(204, 255, 255));
+			btnAdd.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			btnAdd.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(addition == false) {
+						if(isResult){
+							displayArea.setText("");
+							isResult = false;
+						} else {
+							displayArea.setText(s1 + "+");
+						}
+						addition = true;
+					}
+				}
+			});
+			btnAdd.setToolTipText("PLUS");
+			buttonGroup.add(btnAdd);
+			btnAdd.setBounds(255, 75, 70, 55);
+			add(btnAdd);
+			
+			JButton button_3 = new JButton("4");
+			button_3.setToolTipText("FOUR");
+			button_3.setBackground(new Color(255, 255, 204));
+			button_3.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "4");
+					}
+				}
+			});
+			button_3.setBounds(15, 140, 70, 55);
+			add(button_3);
+			
+			JButton button_4 = new JButton("5");
+			button_4.setToolTipText("FIVE");
+			button_4.setBackground(new Color(255, 255, 204));
+			button_4.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "5");
+					}
+				}
+			});
+			button_4.setBounds(95, 140, 70, 55);
+			add(button_4);
+			
+			JButton button_5 = new JButton("6");
+			button_5.setToolTipText("SIX");
+			button_5.setBackground(new Color(255, 255, 204));
+			button_5.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "6");
+					}
+				}
+			});
+			button_5.setBounds(175, 140, 70, 55);
+			add(button_5);
+			
+			JButton button_minus = new JButton("-");
+			button_minus.setToolTipText("MINUS");
+			button_minus.setBackground(new Color(204, 255, 255));
+			button_minus.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_minus.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(substraction == false) {
+						if(isResult){
+							displayArea.setText("");
+							isResult = false;
+						} else {
+							displayArea.setText(s1 + "-");
+						}
+						substraction = true;
+					}
+				}
+			});
+			button_minus.setBounds(255, 140, 70, 55);
+			add(button_minus);
+			
+			JButton button_7 = new JButton("1");
+			button_7.setToolTipText("ONE");
+			button_7.setBackground(new Color(255, 255, 204));
+			button_7.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_7.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "1");
+					}
+				}
+			});
+			button_7.setBounds(15, 205, 70, 55);
+			add(button_7);
+			
+			JButton button_8 = new JButton("2");
+			button_8.setToolTipText("TWO");
+			button_8.setBackground(new Color(255, 255, 204));
+			button_8.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_8.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "2");
+					}
+				}
+			});
+			button_8.setBounds(95, 205, 70, 55);
+			add(button_8);
+			
+			JButton button_9 = new JButton("3");
+			button_9.setToolTipText("THREE");
+			button_9.setBackground(new Color(255, 255, 204));
+			button_9.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_9.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "3");
+					}
+				}
+			});
+			button_9.setBounds(175, 205, 70, 55);
+			add(button_9);
+			
+			JButton button_div = new JButton("/");
+			button_div.setToolTipText("DEVIDE");
+			button_div.setBackground(new Color(204, 255, 255));
+			button_div.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_div.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(division == false) {
+						if(isResult){
+							displayArea.setText("");
+							isResult = false;
+						} else {
+							displayArea.setText(s1 + "/");
+						}
+						division = true;
+					}
+				}
+			});
+			button_div.setBounds(255, 205, 70, 55);
+			add(button_div);
+			
+			JButton button_multi = new JButton("*");
+			button_multi.setToolTipText("MULTIPLY");
+			button_multi.setBackground(new Color(204, 255, 255));
+			button_multi.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_multi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(multiplication == false) {
+						if(isResult){
+							displayArea.setText("");
+							isResult = false;
+						} else {
+							displayArea.setText(s1 + "*");
+						}
+						multiplication = true;
+					}
+				}
+			});
+			button_multi.setBounds(255, 270, 70, 55);
+			add(button_multi);
+			
+			JButton button_0 = new JButton("0");
+			button_0.setToolTipText("ZERO");
+			button_0.setBackground(new Color(255, 255, 204));
+			button_0.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_0.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s1 = displayArea.getText();
+					if(isResult){
+						displayArea.setText("");
+						isResult = false;
+					} else {
+						displayArea.setText(s1 + "0");
+					}
+				}
+			});
+			button_0.setBounds(95, 270, 70, 55);
+			add(button_0);
+			
+			JButton button_equals = new JButton("=");
+			button_equals.setToolTipText("EQUALS");
+			button_equals.setBackground(new Color(204, 255, 255));
+			button_equals.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_equals.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try{
+						doCalc();
+					} catch(NumberFormatException nfe){
+						displayArea.setText("Thats too much for me");
+					}
+				}
+			});
+			button_equals.setBounds(338, 205, 70, 120);
+			add(button_equals);
+			
+			JButton btnC = new JButton("C");
+			btnC.setToolTipText("CLEAR");
+			btnC.setBackground(new Color(204, 255, 255));
+			btnC.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			btnC.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					displayArea.setText("");
+				}
+			});
+			btnC.setBounds(15, 270, 70, 55);
+			add(btnC);
+			
+			//pop up menu*************************************************************
+			JButton btnTheme = new JButton(":)");
+			btnTheme.setBackground(new Color(204, 255, 255));
+			btnTheme.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			btnTheme.setBounds(338, 75, 70, 55);
+			add(btnTheme);
+			
+			JButton button = new JButton(".");
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			button.setToolTipText("DECIMAL POINT");
+			button.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button.setBackground(new Color(204, 255, 255));
+			button.setBounds(175, 271, 70, 55);
+			add(button);
+			
+			JButton button_1 = new JButton("-/+");
+			button_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			button_1.setToolTipText("CHANGE NUMBER TO NEGATIVE OR POSITIVE");
+			button_1.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 25));
+			button_1.setBackground(new Color(204, 255, 255));
+			button_1.setBounds(338, 140, 70, 55);
+			add(button_1);
+			menu=new JPopupMenu();
+			JMenuItem m1=new JMenuItem("Background 1");
+			JMenuItem m2=new JMenuItem("Background 2");
+			JMenuItem m3=new JMenuItem("Background 3");
+			JMenuItem m4=new JMenuItem("Background 4");
+			JMenuItem m5=new JMenuItem("Background 5");
+			        menu.add(m1);
+			        menu.add(m2);
+			        menu.add(m3);
+			        menu.add(m4);
+			        menu.add(m5);
+			        ActionListener a1=new ActionListener(){
+			            public void actionPerformed(ActionEvent ae)
+			            {
+			                // Call the showPopup method
+			                // This takes ActionEvent to get
+			                // the event source
+			                showPopup(ae);
+			            }
+			        };
+			        //adding new action listener to trigger menu when button is pressed
+			        btnTheme.addActionListener(a1);
+			        
+			        //*****************action listeners for menu *****************
+			        ActionListener a2=new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							background = 1;
+							System.out.println("menu1   "+ background );
+						}	
+			        };
+			        m1.addActionListener(a2);
+			      
+			        ActionListener a3=new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+					
+						}	
+			        };
+			        m2.addActionListener(a3);
+			        
+			        ActionListener a4=new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							
+						}	
+			        };
+			        m3.addActionListener(a4);
+			    
+			        ActionListener a5=new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							
+						}	
+			        };
+			        m4.addActionListener(a5);
+			        
+			        ActionListener a6=new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+						}	
+			        };
+			        m5.addActionListener(a6);
+			        //*******************************end of pop up menu*************************
+			        
+					
+					
+					
+
+		}
+	
+	private void doCalc(){
+		
+		StringBuilder builder = new StringBuilder();
+
+		if(addition){
+			String s1 = displayArea.getText();
+			int plusInd = s1.indexOf('+');
+			String sub1 = s1.substring(0, plusInd);
+			String sub2 = s1.substring(plusInd+1, s1.length());
+			double num1 = Integer.parseInt(sub1);
+			double num2 = Integer.parseInt(sub2);
+			double result = num1 + num2;	
+			builder.append(result);
+			String result2 = builder.toString();
+			displayArea.setText(s1 + "=" + result2);
+			System.out.println(plusInd + " , " + sub1);
+			System.out.println(num1);
+			addition = false;
+		} else if(substraction) {
+			String s1 = displayArea.getText();
+			System.out.println(s1);
+			int subInd;
+			double num1, num2, result;
+			String sub1, sub2;
+			
+			if(s1.charAt(0) == '-'){
+				String s2 = s1.substring(1, s1.length());
+				subInd = s2.indexOf('-');
+				sub1 = s2.substring(0, subInd);
+				num1 = Integer.parseInt(sub1);
+				num1 = -num1;
+				sub2 = s1.substring(subInd+1, s1.length());
+				num2 = Integer.parseInt(sub2);
+				result = (num1) - (-num2);
+			} else {
+				subInd = s1.indexOf('-');
+				sub1 = s1.substring(0, subInd);
+				num1 = Integer.parseInt(sub1);
+				sub2 = s1.substring(subInd+1, s1.length());
+				num2 = Integer.parseInt(sub2);
+				result = (num1) - (num2);
+			}
+			builder.append(result);
+			String result2 = builder.toString();
+			displayArea.setText(s1 + "=" + result2);
+			System.out.println(subInd + " , " + sub1);
+			System.out.println(num1);
+			substraction = false;
+		} else if(division) {
+			String s1 = displayArea.getText();
+			int divInd = s1.indexOf('/');
+			String sub1 = s1.substring(0, divInd);
+			String sub2 = s1.substring(divInd+1, s1.length());
+			double num1 = Integer.parseInt(sub1);
+			double num2 = Integer.parseInt(sub2);
+			double result = num1 / num2;		
+			builder.append(result);
+			String result2 = builder.toString();
+			displayArea.setText(s1 + "=" + result2);
+			System.out.println(divInd + " , " + sub1 );
+			System.out.println(num1);
+			division = false;
+		} else if(multiplication) {
+			String s1 = displayArea.getText();
+			int multiInd = s1.indexOf('*');
+			String sub1 = s1.substring(0, multiInd);
+			String sub2 = s1.substring(multiInd+1, s1.length());
+			double num1 = Integer.parseInt(sub1);
+			double num2 = Integer.parseInt(sub2);
+			double result = num1 * num2;	
+			builder.append(result);
+			String result2 = builder.toString();
+			displayArea.setText(s1 + "=" + result2);
+			System.out.println(multiInd + " , " + sub1 + " , " + sub2);
+			System.out.println(num1);
+			multiplication = false;
+		}
+		isResult = true;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+	}
+	//**********************************************************************************************************************
+
+			public void paintComponent(Graphics g) {
+
+				super.paintComponent(g);
+				try{
+				i = new ImageIcon("src/spiderman.jpg");
+				i.paintIcon(this, g, 0, 0);
+				} catch(NullPointerException npe){
+					
+				}
+				
+
+			}
+			
+			private void showPopup(ActionEvent ae) {
+				// Get the event source
+		        Component b=(Component)ae.getSource();
+		        
+		        // Get the location of the point 'on the screen'
+		        Point p=b.getLocationOnScreen();
+		        
+		        // Show the JPopupMenu via program
+		        
+		        // Parameter desc
+		        // ----------------
+		        // this - represents current frame
+		        // 0,0 is the co ordinate where the popup
+		        // is shown
+		        menu.show(this,0,0);
+		        
+		        // Now set the location of the JPopupMenu
+		        // This location is relative to the screen
+		        menu.setLocation(p.x,p.y+b.getHeight());
+
+			}
+}
 
